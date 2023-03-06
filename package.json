@@ -1,9 +1,24 @@
 {
-  "name": "react-mobx-template",
-  "version": "1.0.0",
+  "name": "create-react-mobx",
+  "version": "1.0.1",
   "description": "Create a template with routing, state management, components, and more built in",
-  "author": "Devin Alldrit <devin@alldrit.ca>",
+  "keywords": ["Template", "React", "MobX", "Vite", "State Management", "Component Library"],
+  "homepage": "https://github.com./dalldrit13/create-react-mobx#readme",
+  "author": {
+    "name": "Devin Alldrit",
+    "email": "devin@alldrit.ca",
+    "url": "https://alldrit.ca"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://alldrit.ca/donate"
+  },
+  "bugs": {
+    "url": "https://github.com./dalldrit13/create-react-mobx/issues",
+    "email": "info@alldrit.ca"
+  },
   "license": "MIT",
+  "repository": "github:dalldrit13/create-react-mobx",
   "dependencies": {
     "readline": "^1.3.0"
   },

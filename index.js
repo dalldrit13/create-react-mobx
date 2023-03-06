@@ -25,7 +25,7 @@ function close(str) {
   if (str) {
     console.log(str)
   } else {
-    console.log('\n\n', '\x1b[36m%s\x1b[0m', 'All set. You can delete the init folder now')
+    console.log('\n\n', 'All set')
   }
   r1.close()
 }
@@ -34,9 +34,9 @@ r1.on('close', () => {
   process.exit(0); //eslint-disable-line no-undef
 });
 
-
+const currentDir = process.cwd()
 function getPath(relative) {
-  return path.resolve(__dirname, relative)
+  return path.resolve(currentDir, relative)
 }
 
 async function main() {

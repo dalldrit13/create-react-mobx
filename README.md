@@ -37,7 +37,7 @@ npm run dev
 ```
 This will make the frontend accessible at http://localhost:3000
 
-If you're developing a backend (And opted in during initialization) we setup NGINX for running a reverse proxy to simplify development. *Checkout my [ExpressJS template](https://github.com/dalldrit13/express_mongoose_template) for quickly launching a compatible server*
+If you're developing a backend (And opted in during initialization) we setup NGINX for running a reverse proxy to simplify development. *Checkout my [ExpressJS template](https://github.com/dalldrit13/create-express_mongoose) for quickly launching a compatible server*
 
 ## Start The Proxy
 ```bash
