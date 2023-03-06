@@ -35,8 +35,14 @@ r1.on('close', () => {
 });
 
 const currentDir = process.cwd()
-function getPath(relative) {
-  return path.resolve(currentDir, relative)
+// Relative path and boolean indicates target dir instead of script dir
+function getPath(relative, isPackageDir) {
+  // Target files from this package
+  if (isPackageDir) {
+    return path.resolve(__dirname, relative)
+  }
+  // Target path in new project
+  else return path.resolve(currentDir, relative)
 }
 
 async function main() {
@@ -48,7 +54,7 @@ async function main() {
     close("Already a folder with this name")
   }
 
-  var pkg = require(getPath("./template/package.json"))
+  var pkg = require(getPath("./template/package.json", true))
 
   // What is the name of the project
   const name = await question(`Let's get your project setup! What is the title?\n`)
@@ -84,7 +90,7 @@ async function main() {
       pkg.scripts.proxy_stop = getPath(`./${projectName}/nginx/stop.sh`)
     }
   }
-  fs.cpSync(getPath('./template'), getPath(`./${projectName}`), { recursive: true, force: true })
+  fs.cpSync(getPath('./template', true), getPath(`./${projectName}`), { recursive: true, force: true })
   fs.writeFileSync(getPath(`./${projectName}/package.json`), JSON.stringify(pkg, null, 4))
   
   // Create env files
@@ -100,7 +106,7 @@ async function main() {
   // Setup NGINX
   if (nginx_init) {
     if (!fs.existsSync(getPath(`./${projectName}/nginx`))) {
-      fs.cpSync(getPath('nginx'), getPath(`./${projectName}/nginx`), { recursive: true, force: true })
+      fs.cpSync(getPath('nginx', true), getPath(`./${projectName}/nginx`), { recursive: true, force: true })
       if (isWindows) {
         fs.writeFileSync(getPath(`./${projectName}/nginx/start.bat`), file_templates.nginx.windows.start({ path: getPath(`./${projectName}/nginx`), conf_path: getPath(`./${projectName}/nginx/nginx.conf`) }))
         fs.writeFileSync(getPath(`./${projectName}/nginx/stop.bat`), file_templates.nginx.windows.stop({ path: getPath(`./${projectName}/nginx`), conf_path: getPath(`./${projectName}/nginx/nginx.conf`), access_path: getPath(`./${projectName}/nginx/access.log`), error_path: getPath(`./${projectName}/nginx/error.log`) }))
